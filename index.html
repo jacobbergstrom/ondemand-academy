@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On Demand Academy – Vi blir klokare tillsammans</title>
+  <meta name="description" content="On Demand Academy är ett kunskapsnätverk för chefer, ledare och medarbetare som vill utvecklas inom ledarskap, kommunikation och organisation.">
+  <meta property="og:title" content="On Demand Academy – Vi blir klokare tillsammans">
+  <meta property="og:description" content="Kunskapsnätverk för chefer, ledare och medarbetare. Frukostmöten, halvdagar, tvådagarsresor – alltid tillsammans med andra Kunskapare.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #2a9d8f;
+      --teal-dark: #1d7a6f;
+      --teal-deeper: #156b62;
+      --teal-light: #e0f5f1;
+      --lime: #c8e84b;
+      --lime-light: #f5fad6;
+      --dark: #1a1a2e;
+      --warm-gray: #6b6b6b;
+      --light-gray: #e8e6e3;
+      --warm-white: #faf9f7;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      background: var(--warm-white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 20px rgba(26,26,46,0.06);
+      padding: 0.7rem 2rem;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .nav-logo .od { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--teal);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--teal) !important;
+      color: var(--white) !important;
+      padding: 0.5rem 1.4rem !important;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      background: var(--teal-dark) !important;
+      transform: translateY(-1px);
+    }
+    .nav-cta::after { display: none !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--warm-white) 0%, var(--teal-light) 50%, var(--warm-white) 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(42,157,143,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: heroFloat 20s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; left: -5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,232,75,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: heroFloat 25s ease-in-out infinite reverse;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(30px,-40px) scale(1.05); }
+      66% { transform: translate(-20px,20px) scale(0.95); }
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10rem 2rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 50px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--warm-gray);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--lime);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      max-width: 680px;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+    .hero h1 .accent { color: var(--teal); }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--warm-gray);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s ease 0.2s both;
+      line-height: 1.75;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(42,157,143,0.25);
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(42,157,143,0.35);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--dark);
+      border: 2px solid var(--light-gray);
+    }
+    .btn-secondary:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .btn-lime {
+      background: var(--lime);
+      color: var(--dark);
+      box-shadow: 0 4px 20px rgba(200,232,75,0.3);
+    }
+    .btn-lime:hover {
+      background: #b8d843;
+      transform: translateY(-2px);
+    }
+    .arrow { transition: transform 0.3s; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ========================================
+       SECTION UTILITIES
+       ======================================== */
+    .section {
+      padding: 6rem 2rem;
+    }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--warm-gray);
+      max-width: 580px;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       KUNSKAPARE SECTION
+       ======================================== */
+    .kunskapare { background: var(--white); }
+    .kunskapare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .kunskapare-text p {
+      font-size: 1.02rem;
+      color: var(--warm-gray);
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+    .kunskapare-card {
+      background: linear-gradient(135deg, var(--teal-light) 0%, var(--warm-white) 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .kunskapare-card::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(42,157,143,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .kunskapare-card blockquote {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      font-style: normal;
+    }
+    .kunskapare-card blockquote::before {
+      content: '\201C';
+      font-size: 5rem;
+      color: var(--teal);
+      opacity: 0.25;
+      position: absolute;
+      top: -2.2rem; left: -0.5rem;
+      font-family: Georgia, serif;
+    }
+    .kunskapare-card .attr {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--warm-gray);
+      font-weight: 500;
+    }
+
+    /* ========================================
+       FORMAT CARDS
+       ======================================== */
+    .formats { background: var(--warm-white); }
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .format-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.2rem;
+      border: 1px solid var(--light-gray);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .format-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,26,46,0.07);
+      border-color: var(--teal);
+    }
+    .format-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .format-card:hover::after { transform: scaleX(1); }
+
+    .format-icon {
+      width: 50px; height: 50px;
+      background: var(--teal-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .format-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.25rem;
+    }
+    .format-meta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .format-card p {
+      font-size: 0.9rem;
+      color: var(--warm-gray);
+      line-height: 1.65;
+    }
+
+    /* ========================================
+       KUNSKAPSNYCKELN
+       ======================================== */
+    .nyckeln {
+      background: var(--dark);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .nyckeln::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(42,157,143,0.2) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .nyckeln-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+    .nyckeln .section-label { color: var(--lime); }
+    .nyckeln .section-title { color: var(--white); }
+    .nyckeln p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.02rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    .nyckeln-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .nyckeln-feat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .nyckeln-feat .ck { color: var(--lime); font-weight: 700; }
+
+    /* ========================================
+       EVENTS (LUMA EMBED)
+       ======================================== */
+    .events { background: var(--white); }
+    .luma-embed-wrapper {
+      background: var(--warm-white);
+      border-radius: 20px;
+      border: 1px solid var(--light-gray);
+      overflow: hidden;
+      min-height: 500px;
+    }
+    .luma-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      text-align: center;
+      padding: 3rem;
+    }
+    .luma-placeholder .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .luma-placeholder h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .luma-placeholder p {
+      color: var(--warm-gray);
+      font-size: 0.9rem;
+      max-width: 400px;
+    }
+
+    /* ========================================
+       FOR COMPANIES
+       ======================================== */
+    .companies { background: var(--warm-white); }
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .co-card {
+      text-align: center;
+      padding: 2.5rem 1.8rem;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      transition: all 0.3s;
+    }
+    .co-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(26,26,46,0.06);
+    }
+    .co-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .co-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .co-card p {
+      font-size: 0.88rem;
+      color: var(--warm-gray);
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       ON DEMAND FAMILY
+       ======================================== */
+    .family { background: var(--teal-light); }
+    .family-banner {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      border: 1px solid var(--light-gray);
+    }
+    .family-logo-text {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--teal);
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .family-text p {
+      font-size: 0.93rem;
+      color: var(--warm-gray);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .family-link {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.3s;
+    }
+    .family-link:hover { gap: 0.6rem; }
+
+    /* ========================================
+       CONTACT / TALLY FORM
+       ======================================== */
+    .contact { background: var(--white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .contact-info > p {
+      color: var(--warm-gray);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.93rem;
+    }
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: var(--teal-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-item a:hover { color: var(--teal); }
+
+    .tally-embed-wrapper {
+      background: var(--warm-white);
+      border-radius: 20px;
+      border: 1px solid var(--light-gray);
+      overflow: hidden;
+      min-height: 450px;
+    }
+    .tally-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      text-align: center;
+      padding: 3rem;
+    }
+    .tally-placeholder .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .tally-placeholder h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .tally-placeholder p {
+      color: var(--warm-gray);
+      font-size: 0.88rem;
+      max-width: 380px;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .footer-logo .od { color: var(--teal); }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 0.78rem;
+      width: 100%;
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--white);
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 105;
+      }
+      .nav-links.open a { font-size: 1.2rem; }
+      .hamburger { display: flex; }
+
+      .hero-content { padding-top: 8rem; }
+      .kunskapare-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .formats-grid { grid-template-columns: 1fr; }
+      .companies-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .family-banner { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
+      .section { padding: 4rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero-sub { font-size: 1rem; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <span class="od">On Demand</span>&nbsp;Academy
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#kunskapare">Kunskapare</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#nyckeln">KunskapsNyckeln</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#foretag">För företag</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakta oss</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        En del av On Demand People
+      </div>
+      <h1>Vi blir <span class="accent">klokare</span> tillsammans.</h1>
+      <p class="hero-sub">
+        On Demand Academy är ett kunskapsnätverk för chefer, ledare och medarbetare som vill utvecklas inom ledarskap, kommunikation och organisation.
+      </p>
+      <div class="hero-actions">
+        <a href="#events" class="btn btn-primary">Se kommande tillfällen <span class="arrow">→</span></a>
+        <a href="#format" class="btn btn-secondary">Utforska våra format</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KUNSKAPARE ===== -->
+  <section class="section kunskapare" id="kunskapare">
+    <div class="section-inner">
+      <div class="kunskapare-grid">
+        <div class="kunskapare-text reveal">
+          <p class="section-label">Vårt koncept</p>
+          <h2 class="section-title">Vad är en Kunskapare?</h2>
+          <p>
+            En Kunskapare är en nyfiken, generös och reflekterande person. Hos oss kallar vi både föreläsare och deltagare för Kunskapare – för vi tror att lärandet blir som starkast när det sker tillsammans.
+          </p>
+          <p>
+            Vi möts inte bara för att lyssna. Vi möts för att dela, förstå och skapa. Du får verktyg du kan använda redan imorgon, och ett nätverk som håller över tid.
+          </p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.15s;">
+          <div class="kunskapare-card">
+            <blockquote>
+              Frukostseminarierna har gett mig konkreta insikter som jag kunnat använda direkt i mitt arbete. En fantastisk partner att ha med sig på resan!
+            </blockquote>
+            <p class="attr">Jonathan Ardfors, Supportchef – Antura AB</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMAT ===== -->
+  <section class="section formats" id="format">
+    <div class="section-inner">
+      <p class="section-label reveal">Våra format</p>
+      <h2 class="section-title reveal">Välj din nivå av fördjupning</h2>
+      <p class="section-sub reveal">Från en inspirerande timme till en intensiv tvådagarsresa. Alla format bygger på samma princip: praktisk kunskap, tillsammans med andra Kunskapare.</p>
+
+      <div class="formats-grid">
+        <div class="format-card reveal">
+          <div class="format-icon">🌅</div>
+          <h3>KunskapsTorsdag</h3>
+          <p class="format-meta">1 timme · Frukostseminarium</p>
+          <p>Börja dagen med en insikt du kan använda redan idag. Korta, energiska möten som ger nya perspektiv – perfekt ingång för dig som vill testa.</p>
+        </div>
+
+        <div class="format-card reveal" style="transition-delay: 0.1s;">
+          <div class="format-icon">🔧</div>
+          <h3>KunskapsPass</h3>
+          <p class="format-meta">3 timmar · Halvdagsfördjupning</p>
+          <p>Fördjupa dig inom ett aktuellt tema och kom tillbaka till jobbet full av idéer. Du får konkreta verktyg och tid att reflektera tillsammans med andra.</p>
+        </div>
+
+        <div class="format-card reveal" style="transition-delay: 0.2s;">
+          <div class="format-icon">🧭</div>
+          <h3>KunskapsResan</h3>
+          <p class="format-meta">2 dagar · Utbildning på annan ort</p>
+          <p>Stanna upp, tänk nytt och bygg relationer – bortom vardagen. Tvådagarsformat med övernattning för dig som vill utvecklas på djupet.</p>
+        </div>
+
+        <div class="format-card reveal" style="transition-delay: 0.3s;">
+          <div class="format-icon">🎯</div>
+          <h3>Chef i Fokus</h3>
+          <p class="format-meta">6 moduler · Chefsprogram</p>
+          <p>Trygg och stark i chefskapet – från vision till avslut. Ett utbildningsprogram för nya och erfarna chefer som vill växa i sin roll.</p>
+        </div>
+
+        <div class="format-card reveal" style="transition-delay: 0.4s;">
+          <div class="format-icon">🔑</div>
+          <h3>KunskapsNyckeln</h3>
+          <p class="format-meta">Årsabonnemang · Tillgång till allt</p>
+          <p>Din nyckel till hela vårt kunskapsnätverk. Samlad tillgång till alla format, löpande utveckling och en plats bland andra Kunskapare.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KUNSKAPSNYCKELN ===== -->
+  <section class="section nyckeln" id="nyckeln">
+    <div class="section-inner">
+      <div class="nyckeln-inner reveal">
+        <p class="section-label">Årsabonnemang</p>
+        <h2 class="section-title">KunskapsNyckeln</h2>
+        <p>
+          Vill du utvecklas löpande under året? KunskapsNyckeln ger dig tillgång till alla våra utbildningsformat och en självklar plats i vårt kunskapsnätverk. Perfekt för dig – eller som personalförmån för hela teamet.
+        </p>
+        <div class="nyckeln-features">
+          <span class="nyckeln-feat"><span class="ck">✓</span> Alla KunskapsTorsdagar</span>
+          <span class="nyckeln-feat"><span class="ck">✓</span> Alla KunskapsPass</span>
+          <span class="nyckeln-feat"><span class="ck">✓</span> Rabatt på KunskapsResan</span>
+          <span class="nyckeln-feat"><span class="ck">✓</span> Rabatt på Chef i Fokus</span>
+          <span class="nyckeln-feat"><span class="ck">✓</span> Tillgång till nätverket</span>
+          <span class="nyckeln-feat"><span class="ck">✓</span> Ingår i HR On Demands HR&nbsp;Säkrad</span>
+        </div>
+        <a href="#kontakt" class="btn btn-lime">Fråga om KunskapsNyckeln <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EVENTS (LUMA) ===== -->
+  <section class="section events" id="events">
+    <div class="section-inner">
+      <p class="section-label reveal">Kalender</p>
+      <h2 class="section-title reveal">Kommande kunskapstillfällen</h2>
+      <p class="section-sub reveal">Boka din plats direkt. Alla tillfällen är öppna för Kunskapare – oavsett om du har KunskapsNyckeln eller köper enskilda platser.</p>
+
+      <div class="luma-embed-wrapper reveal">
+        <!-- 
+          ============================================================
+          LUMA EMBED – BYT UT PLACEHOLDER NEDAN
+          ============================================================
+          Ersätt detta block med din Luma-kalender embed.
+          
+          Alternativ 1: Luma Calendar Embed
+          <iframe src="https://lu.ma/embed/calendar/cal-XXXXXX/events" 
+                  width="100%" height="600" frameborder="0" 
+                  style="border: none; border-radius: 16px;"
+                  allowfullscreen></iframe>
+          
+          Alternativ 2: Luma Event List
+          <luma-calendar-embed calendar-id="cal-XXXXXX"></luma-calendar-embed>
+          <script src="https://embed.lu.ma/checkout-button.js"></script>
+          ============================================================
+        -->
+        <div class="luma-placeholder">
+          <span class="icon">📅</span>
+          <h3>Eventkalender laddas här</h3>
+          <p>Byt ut denna placeholder med din Luma-kalender embed-kod. Se kommentaren i HTML-koden för instruktioner.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FÖR FÖRETAG ===== -->
+  <section class="section companies" id="foretag">
+    <div class="section-inner">
+      <p class="section-label reveal">För företag</p>
+      <h2 class="section-title reveal">Investera i era människor</h2>
+      <p class="section-sub reveal">On Demand Academy fungerar lika bra som personalförmån som individuell utveckling. Vi skräddarsyr gärna lösningar för er verksamhet.</p>
+
+      <div class="companies-grid">
+        <div class="co-card reveal">
+          <span class="co-icon">🔑</span>
+          <h3>KunskapsNyckeln som förmån</h3>
+          <p>Ge era medarbetare och chefer tillgång till hela vårt utbud. Enkel administration, ett abonnemang per person.</p>
+        </div>
+        <div class="co-card reveal" style="transition-delay: 0.1s;">
+          <span class="co-icon">🏢</span>
+          <h3>Skräddarsydda insatser</h3>
+          <p>Vi utformar program och halvdagar utifrån era specifika behov. Hos er eller på valfri plats.</p>
+        </div>
+        <div class="co-card reveal" style="transition-delay: 0.2s;">
+          <span class="co-icon">🤝</span>
+          <h3>Redan HR Säkrad-kund?</h3>
+          <p>Om ert företag har HR Säkrad hos HR On Demand ingår KunskapsNyckeln redan. Kontakta oss för att aktivera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ON DEMAND FAMILY ===== -->
+  <section class="section family">
+    <div class="section-inner">
+      <div class="family-banner reveal">
+        <div class="family-logo-text">
+          On Demand<br>People
+        </div>
+        <div class="family-text">
+          <p>
+            On Demand Academy är en del av On Demand People-familjen – ett nätverk av erfarna proffs som delar kunskap och erfarenhet. Vårt systerbolag HR On Demand har sedan 2008 hjälpt chefer och företag med trygg HR-vägledning.
+          </p>
+          <a href="https://hrondemand.se" class="family-link" target="_blank" rel="noopener">
+            Besök HR On Demand <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KONTAKT / TALLY ===== -->
+  <section class="section contact" id="kontakt">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="section-label">Kontakt</p>
+          <h2 class="section-title">Nyfiken? Hör av dig.</h2>
+          <p>Vi svarar gärna på frågor om våra format, KunskapsNyckeln eller skräddarsydda lösningar för ert företag. Fyll i formuläret eller kontakta oss direkt.</p>
+
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <a href="tel:010-2099200">010-209 92 00</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <a href="mailto:academy@ondemandpeople.se">academy@ondemandpeople.se</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <span>Datavägen 14A, 436 32 Askim</span>
+          </div>
+        </div>
+
+        <div class="tally-embed-wrapper reveal" style="transition-delay: 0.15s;">
+          <!-- 
+            ============================================================
+            TALLY FORM EMBED – BYT UT PLACEHOLDER NEDAN
+            ============================================================
+            Ersätt detta block med din Tally-form embed.
+            
+            Alternativ 1: Standard iframe embed
+            <iframe data-tally-src="https://tally.so/embed/XXXXXX?alignLeft=1&hideTitle=1&transparentBackground=1" 
+                    loading="lazy" width="100%" height="500" 
+                    frameborder="0" marginheight="0" marginwidth="0" 
+                    title="Kontaktformulär"
+                    style="border: none;"></iframe>
+            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s)}</script>
+            
+            Alternativ 2: Popup-knapp
+            <button data-tally-open="XXXXXX" data-tally-width="500" 
+                    data-tally-hide-title="1" class="btn btn-primary">
+              Öppna formulär
+            </button>
+            ============================================================
+          -->
+          <div class="tally-placeholder">
+            <span class="icon">📝</span>
+            <h3>Kontaktformulär laddas här</h3>
+            <p>Byt ut denna placeholder med din Tally-form embed-kod. Se kommentaren i HTML-koden för instruktioner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="od">On Demand</span> Academy
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://hrondemand.se" target="_blank" rel="noopener">HR On Demand</a></li>
+        <li><a href="https://ondemandpeople.se" target="_blank" rel="noopener">On Demand People</a></li>
+        <li><a href="#">Integritetspolicy</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 On Demand Academy. En del av On Demand People. Alla rättigheter förbehållna.</p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
