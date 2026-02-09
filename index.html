@@ -50,9 +50,10 @@
       justify-content: space-between;
       align-items: center;
       transition: all 0.4s ease;
+      background: transparent;
     }
     .nav.scrolled {
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       box-shadow: 0 1px 20px rgba(26,26,46,0.06);
@@ -71,6 +72,9 @@
     .nav-logo .od { color: var(--lime); transition: color 0.4s; }
     .nav.scrolled .nav-logo { color: var(--dark); }
     .nav.scrolled .nav-logo .od { color: var(--teal); }
+    .nav.scrolled .nav-links a { color: var(--dark); }
+    .nav.scrolled .nav-links a:hover { color: var(--teal); }
+    .nav.scrolled .hamburger span { background: var(--dark); }
 
     .nav-links {
       display: flex;
@@ -143,7 +147,10 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      background: url('images/hero.jpg') center center / cover no-repeat;
+      background-image: url('images/hero.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
     }
     .hero::before {
       content: '';
@@ -151,20 +158,14 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(26,26,46,0.82) 0%,
-        rgba(26,26,46,0.65) 40%,
-        rgba(42,157,143,0.45) 100%
+        rgba(26,26,46,0.85) 0%,
+        rgba(26,26,46,0.7) 40%,
+        rgba(42,157,143,0.5) 100%
       );
       z-index: 0;
     }
     .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -20%; left: -5%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(200,232,75,0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: heroFloat 25s ease-in-out infinite reverse;
+      display: none;
     }
     @keyframes heroFloat {
       0%, 100% { transform: translate(0,0) scale(1); }
@@ -337,6 +338,11 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    /* Fallback: if JS fails, show everything */
+    .no-js .reveal {
+      opacity: 1;
+      transform: none;
     }
 
     /* ========================================
@@ -1077,6 +1083,21 @@
     });
 
     // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.i
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+  </script>
+
+</body>
+</html>
