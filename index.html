@@ -61,13 +61,16 @@
     .nav-logo {
       font-weight: 700;
       font-size: 1.15rem;
-      color: var(--dark);
+      color: var(--white);
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 0.3rem;
+      transition: color 0.4s;
     }
-    .nav-logo .od { color: var(--teal); }
+    .nav-logo .od { color: var(--lime); transition: color 0.4s; }
+    .nav.scrolled .nav-logo { color: var(--dark); }
+    .nav.scrolled .nav-logo .od { color: var(--teal); }
 
     .nav-links {
       display: flex;
@@ -77,13 +80,15 @@
     }
     .nav-links a {
       text-decoration: none;
-      color: var(--dark);
+      color: rgba(255,255,255,0.85);
       font-size: 0.88rem;
       font-weight: 500;
       transition: color 0.3s;
       position: relative;
     }
-    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover { color: var(--white); }
+    .nav.scrolled .nav-links a { color: var(--dark); }
+    .nav.scrolled .nav-links a:hover { color: var(--teal); }
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -138,23 +143,26 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(160deg, var(--warm-white) 0%, var(--teal-light) 50%, var(--warm-white) 100%);
+      background: url('images/hero.jpg') center center / cover no-repeat;
     }
     .hero::before {
       content: '';
       position: absolute;
-      top: -30%; right: -10%;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(42,157,143,0.12) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: heroFloat 20s ease-in-out infinite;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(26,26,46,0.82) 0%,
+        rgba(26,26,46,0.65) 40%,
+        rgba(42,157,143,0.45) 100%
+      );
+      z-index: 0;
     }
     .hero::after {
       content: '';
       position: absolute;
       bottom: -20%; left: -5%;
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(200,232,75,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(200,232,75,0.1) 0%, transparent 70%);
       border-radius: 50%;
       animation: heroFloat 25s ease-in-out infinite reverse;
     }
@@ -175,13 +183,15 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--white);
-      border: 1px solid var(--light-gray);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 50px;
       padding: 0.4rem 1.1rem;
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--warm-gray);
+      color: rgba(255,255,255,0.85);
       margin-bottom: 2rem;
       animation: fadeUp 0.8s ease both;
     }
@@ -201,16 +211,16 @@
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 1.5rem;
-      color: var(--dark);
+      color: var(--white);
       max-width: 680px;
       animation: fadeUp 0.8s ease 0.1s both;
     }
-    .hero h1 .accent { color: var(--teal); }
+    .hero h1 .accent { color: var(--lime); }
 
     .hero-sub {
       font-size: clamp(1.05rem, 2vw, 1.25rem);
       font-weight: 300;
-      color: var(--warm-gray);
+      color: rgba(255,255,255,0.85);
       max-width: 540px;
       margin-bottom: 2.5rem;
       animation: fadeUp 0.8s ease 0.2s both;
@@ -263,6 +273,15 @@
     .btn-secondary:hover {
       border-color: var(--teal);
       color: var(--teal);
+    }
+    .btn-secondary-light {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.35);
+    }
+    .btn-secondary-light:hover {
+      border-color: var(--white);
+      color: var(--white);
     }
     .btn-lime {
       background: var(--lime);
@@ -786,7 +805,7 @@
       </p>
       <div class="hero-actions">
         <a href="#events" class="btn btn-primary">Se kommande tillfällen <span class="arrow">→</span></a>
-        <a href="#format" class="btn btn-secondary">Utforska våra format</a>
+        <a href="#format" class="btn btn-secondary-light">Utforska våra format</a>
       </div>
     </div>
   </section>
@@ -910,11 +929,10 @@
           <script src="https://embed.lu.ma/checkout-button.js"></script>
           ============================================================
         -->
-        <div class="luma-placeholder">
-          <span class="icon">📅</span>
-          <h3>Eventkalender laddas här</h3>
-          <p>Byt ut denna placeholder med din Luma-kalender embed-kod. Se kommentaren i HTML-koden för instruktioner.</p>
-        </div>
+        <iframe src="https://luma.com/embed/calendar/cal-GG2iTLzl3eBrRUk/events"
+                width="100%" height="600" frameborder="0"
+                style="border: none; border-radius: 16px;"
+                allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
       </div>
     </div>
   </section>
@@ -980,7 +998,7 @@
           </div>
           <div class="contact-item">
             <span class="contact-icon">✉️</span>
-            <a href="mailto:academy@ondemandpeople.se">academy@ondemandpeople.se</a>
+            <a href="/cdn-cgi/l/email-protection#4223212326272f3b022d2c26272f232c2632272d322e276c3127"><span class="__cf_email__" data-cfemail="e687858782838b9fa6898882838b878882968389968a83c89583">[email&#160;protected]</span></a>
           </div>
           <div class="contact-item">
             <span class="contact-icon">📍</span>
@@ -1010,11 +1028,12 @@
             </button>
             ============================================================
           -->
-          <div class="tally-placeholder">
-            <span class="icon">📝</span>
-            <h3>Kontaktformulär laddas här</h3>
-            <p>Byt ut denna placeholder med din Tally-form embed-kod. Se kommentaren i HTML-koden för instruktioner.</p>
-          </div>
+          <iframe data-tally-src="https://tally.so/embed/aQYYM9?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                loading="lazy" width="100%" height="500"
+                frameborder="0" marginheight="0" marginwidth="0"
+                title="Kontaktformulär"
+                style="border: none;"></iframe>
+        <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s)}</script>
         </div>
       </div>
     </div>
@@ -1036,7 +1055,7 @@
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Nav scroll effect
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1060,14 +1079,4 @@
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-
-</body>
-</html>
+        if (entry.i
